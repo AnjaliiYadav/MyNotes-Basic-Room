@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white">
-        <include layout="@layout/note_item"/>
+        <include layout="@layout/note_item"
+            android:id="@+id/note_item_details"/>
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

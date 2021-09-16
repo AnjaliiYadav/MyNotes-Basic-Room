@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
-        <include layout="@layout/view_toolbar"/>
+        <include layout="@layout/view_toolbar"
+            android:id="@+id/note_toolbar"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

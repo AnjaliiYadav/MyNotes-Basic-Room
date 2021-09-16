@@ -7,20 +7,25 @@
     tools:context=".ui.activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/display_all_notes"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/float_button"
+        android:src="@drawable/ic_baseline_add_24"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="15dp"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
