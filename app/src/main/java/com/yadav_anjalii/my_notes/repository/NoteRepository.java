@@ -28,7 +28,11 @@ public class NoteRepository {
         noteDatabase.noteDao().deleteNote(note);
     }
 
-    public LiveData<List<Note>> getNotes(){
+    public LiveData<List<Note>> getALlNotes(){
        return noteDatabase.noteDao().getAllNotes();
+    }
+
+    public LiveData<Note> getNote(int id){
+        return noteDatabase.noteDao().getNote(id);
     }
 }
