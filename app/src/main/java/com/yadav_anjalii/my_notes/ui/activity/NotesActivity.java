@@ -30,8 +30,8 @@ public class NotesActivity extends AppCompatActivity implements Constants {
     private void initComponents() {
         note = (Note) getIntent().getSerializableExtra(INTENT_TASK);
         getNoteIfExists(note);
-        binding.checkPasswordNeeded.setOnCheckedChangeListener((compoundButton, isChecked) ->
-                binding.settingPassword.setVisibility(isChecked? View.VISIBLE : View.GONE));
+        /*binding.checkPasswordNeeded.setOnCheckedChangeListener((compoundButton, isChecked) ->
+                binding.settingPassword.setVisibility(isChecked? View.VISIBLE : View.GONE));*/
         binding.noteItemDetails.toolbarDone.setOnClickListener(view -> saveNote());
         binding.noteItemDetails.toolbarImage.setOnClickListener(view -> {
             if ((int)view.getTag() == R.drawable.ic_baseline_delete_24){
@@ -82,6 +82,7 @@ public class NotesActivity extends AppCompatActivity implements Constants {
             binding.noteItemDetails.toolbarImage.setImageResource(R.drawable.ic_baseline_close_24);
             binding.noteItemDetails.toolbarImage.setTag(R.drawable.ic_baseline_close_24);
         }else{
+            binding.setNotes(note);
             changeToolbarTitle(getString(R.string.edit_note));
             binding.noteItemDetails.toolbarImage.setImageResource(R.drawable.ic_baseline_delete_24);
             binding.noteItemDetails.toolbarImage.setTag(R.drawable.ic_baseline_delete_24);
