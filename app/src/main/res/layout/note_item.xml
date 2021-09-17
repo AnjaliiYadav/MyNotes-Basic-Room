@@ -5,60 +5,34 @@
             name="notes"
             type="com.yadav_anjalii.my_notes.model.Note" />
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical">
-        <include layout="@layout/view_toolbar"
-            android:id="@+id/note_toolbar"/>
-        <androidx.cardview.widget.CardView
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="0.02dp">
-            <LinearLayout
+            android:layout_height="wrap_content">
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/note_title"
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:hint="@string/title">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:id="@+id/edit_title"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:inputType="text"
-                        android:text="@{notes.title}"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{notes.title}"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/note_description"
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:hint="@string/note">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:id="@+id/edit_description"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:inputType="text"
-                        android:text="@{notes.description}"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{notes.description}"/>
+        </LinearLayout>
 
 
-        </androidx.cardview.widget.CardView>
 
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -29,6 +29,15 @@ public class Note implements Serializable {
     private boolean encrypt;
     private String password;
 
+    public Note(){}
+
+
+    public Note(String title, String description, boolean encrypt, String password) {
+        this.title = title;
+        this.description = description;
+        this.encrypt = encrypt;
+        this.password = password;
+    }
 
     public int getId() {
         return id;

@@ -2,7 +2,7 @@
     <string name="app_name">Note up</string>
     <string name="done">Done</string>
     <string name="password_title">Enter password</string>
-    <string name="add_note">Add Note</string>
+    <string name="add_note">Add new Note</string>
     <string name="edit_note">Edit Note</string>
     <string name="error_password">Incorrect password</string>
     <string name="title">Title</string>
