@@ -13,13 +13,14 @@ import com.yadav_anjalii.my_notes.model.Note;
 import com.yadav_anjalii.my_notes.ui.adapter.NoteAdapter;
 import com.yadav_anjalii.my_notes.util.Constants;
 import com.yadav_anjalii.my_notes.util.ScreenRedirect;
+import com.yadav_anjalii.my_notes.util.Utils;
 import com.yadav_anjalii.my_notes.viewmodel.NoteViewModel;
 
 public class MainActivity extends AppCompatActivity implements NoteAdapter.ItemClickListener, Constants {
 
     private ActivityMainBinding binding;
     private NoteViewModel noteViewModel;
-
+    private NoteAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,14 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.ItemC
     }
 
     private void addNewNote() {
-       ScreenRedirect.navigate(this, NotesActivity.class);
+        ScreenRedirect.navigate(this, NotesActivity.class);
     }
 
     private void observeNotes() {
         noteViewModel.getNoteAll().observe(this, notes -> {
-            binding.displayAllNotes.setAdapter(new NoteAdapter(notes));
+            adapter = new NoteAdapter(notes);
+            adapter.setItemClickListener(this);
+            binding.displayAllNotes.setAdapter(adapter);
         });
     }
 
@@ -71,22 +74,23 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.ItemC
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == ACTIVITY_REQUEST_CODE) {
             if (data.hasExtra(INTENT_TASK)) {
-                if (data.hasExtra(INTENT_DELETE)){
+                if (data.hasExtra(INTENT_DELETE)) {
                     noteViewModel.deleteNote((Note) data.getSerializableExtra(INTENT_TASK));
-                }else{
-                    noteViewModel.updateNote((Note) data.getParcelableExtra(INTENT_TASK));
+                } else {
+                    noteViewModel.updateNote((Note) data.getSerializableExtra(INTENT_TASK));
                 }
-            }else {
+            } else {
                 String title = data.getStringExtra(TITLE);
                 String desc = data.getStringExtra(DESC);
                 String password = data.getStringExtra(PASSWORD);
+                if(password != null){
+                   password= Utils.generateHash(password);
+                }
                 boolean encrypt = data.getBooleanExtra(ENCRYPT, false);
                 Note note = new Note(title, desc, encrypt, password);
                 noteViewModel.addNote(note);
             }
-
         }
-
     }
 
 }

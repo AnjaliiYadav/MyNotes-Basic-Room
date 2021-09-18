@@ -11,6 +11,7 @@ import com.yadav_anjalii.my_notes.R;
 import com.yadav_anjalii.my_notes.databinding.ActivityNotesBinding;
 import com.yadav_anjalii.my_notes.model.Note;
 import com.yadav_anjalii.my_notes.util.Constants;
+import com.yadav_anjalii.my_notes.util.Utils;
 
 import java.util.Objects;
 
@@ -30,8 +31,8 @@ public class NotesActivity extends AppCompatActivity implements Constants {
     private void initComponents() {
         note = (Note) getIntent().getSerializableExtra(INTENT_TASK);
         getNoteIfExists(note);
-        /*binding.checkPasswordNeeded.setOnCheckedChangeListener((compoundButton, isChecked) ->
-                binding.settingPassword.setVisibility(isChecked? View.VISIBLE : View.GONE));*/
+        binding.checkPasswordNeeded.setOnCheckedChangeListener((compoundButton, isChecked) ->
+                binding.settingPassword.setVisibility(isChecked? View.VISIBLE : View.GONE));
         binding.noteItemDetails.toolbarDone.setOnClickListener(view -> saveNote());
         binding.noteItemDetails.toolbarImage.setOnClickListener(view -> {
             if ((int)view.getTag() == R.drawable.ic_baseline_delete_24){
@@ -81,6 +82,8 @@ public class NotesActivity extends AppCompatActivity implements Constants {
             changeToolbarTitle(getString(R.string.add_note));
             binding.noteItemDetails.toolbarImage.setImageResource(R.drawable.ic_baseline_close_24);
             binding.noteItemDetails.toolbarImage.setTag(R.drawable.ic_baseline_close_24);
+            String time = Utils.getCurrentDateTime(Utils.getCurrentDateTime());
+            binding.dateTime.setText(time);
         }else{
             binding.setNotes(note);
             changeToolbarTitle(getString(R.string.edit_note));

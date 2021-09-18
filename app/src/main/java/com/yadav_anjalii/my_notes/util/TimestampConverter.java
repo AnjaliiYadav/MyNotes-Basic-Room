@@ -8,17 +8,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static com.yadav_anjalii.my_notes.util.Constants.DATE_TIME_FORMAT;
+
 public class TimestampConverter {
-    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
 
     @TypeConverter
     public static Date fromTimestamp(String value) {
         if (value != null) {
 
             TimeZone timeZone = TimeZone.getDefault();
-            df.setTimeZone(timeZone);
+            DATE_TIME_FORMAT.setTimeZone(timeZone);
             try {
-                return df.parse(value);
+                return DATE_TIME_FORMAT.parse(value);
             } catch (ParseException e) {
                 e.printStackTrace();
                 return null;
@@ -29,8 +32,8 @@ public class TimestampConverter {
     @TypeConverter
     public static String dateToTimestamp(Date value) {
         TimeZone timeZone = TimeZone.getDefault();
-        df.setTimeZone(timeZone);
-        return  value == null ? null : df.format(value);
+        DATE_TIME_FORMAT.setTimeZone(timeZone);
+        return  value == null ? null : DATE_TIME_FORMAT.format(value);
 
     }
 }

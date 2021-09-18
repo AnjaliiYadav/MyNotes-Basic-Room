@@ -26,7 +26,5 @@ public interface NoteDao {
     @Query("SELECT * FROM NOTE")
     LiveData<List<Note>> getAllNotes();
 
-    @Query("SELECT * FROM Note WHERE id =:taskId")
-    LiveData<Note> getNote(int taskId);
 
 }

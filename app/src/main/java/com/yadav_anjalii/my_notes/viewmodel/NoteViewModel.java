@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.yadav_anjalii.my_notes.model.Note;
 import com.yadav_anjalii.my_notes.repository.NoteRepository;
+import com.yadav_anjalii.my_notes.util.Utils;
 
 import java.util.List;
 
@@ -20,25 +21,23 @@ public class NoteViewModel extends AndroidViewModel {
     }
 
     public void addNote(Note note){
+        note.setModifiedAt(Utils.getCurrentDateTime());
+        note.setCreatedAt(Utils.getCurrentDateTime());
         repository.insertNote(note);
     }
 
     public void updateNote(Note note){
+        note.setModifiedAt(Utils.getCurrentDateTime());
         repository.updateNote(note);
     }
 
     public void deleteNote(Note note){
-        repository.updateNote(note);
+        repository.deleteNote(note);
     }
 
     public LiveData<List<Note>> getNoteAll(){
         return repository.getALlNotes();
     }
-
-    public LiveData<Note> getNote(int noteID){
-        return repository.getNote(noteID);
-    }
-
 
 
 

@@ -8,6 +8,7 @@ import androidx.room.TypeConverters;
 import com.yadav_anjalii.my_notes.util.TimestampConverter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class Note implements Serializable {
@@ -18,13 +19,29 @@ public class Note implements Serializable {
 
     private String description;
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
     @ColumnInfo(name = "created_at")
     @TypeConverters({TimestampConverter.class})
-    private String createdAt;
+    private Date createdAt;
 
     @ColumnInfo(name = "modified_at")
     @TypeConverters({TimestampConverter.class})
-    private String modifiedAt;
+    private Date modifiedAt;
 
     private boolean encrypt;
     private String password;
@@ -63,21 +80,7 @@ public class Note implements Serializable {
         this.description = description;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(String modifiedAt) {
-        this.modifiedAt = modifiedAt;
-    }
 
     public boolean isEncrypt() {
         return encrypt;

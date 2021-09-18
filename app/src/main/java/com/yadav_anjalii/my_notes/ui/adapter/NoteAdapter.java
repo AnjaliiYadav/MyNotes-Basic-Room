@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.yadav_anjalii.my_notes.databinding.NoteItemBinding;
 import com.yadav_anjalii.my_notes.model.Note;
+import com.yadav_anjalii.my_notes.util.Utils;
 
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
 
     List<Note> notes;
-    private Context context;
     private ItemClickListener itemClickListener;
 
     public NoteAdapter(List<Note> notes) {
@@ -26,7 +26,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+        Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         NoteItemBinding binding= NoteItemBinding.inflate(inflater);
         return new NoteViewHolder(binding);
@@ -34,7 +34,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, int position) {
-        holder.binding.setNotes(notes.get(position));
+        Note note = notes.get(position);
+        holder.binding.setNotes(note);
+        holder.binding.setCurrentDateTime(Utils.getCurrentDateTime(note.getCreatedAt()));
+        if (note.isEncrypt()){
+            holder.binding.noteItemDesc.setVisibility(View.GONE);
+            holder.binding.imageLock.setVisibility(View.VISIBLE);
+        }
         holder.binding.executePendingBindings();
     }
 

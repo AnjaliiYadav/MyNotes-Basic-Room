@@ -25,14 +25,11 @@ public class NoteRepository {
     }
 
     public void updateNote(Note note){
-        noteDatabase.noteDao().deleteNote(note);
+        noteDatabase.noteDao().updateNote(note);
     }
 
     public LiveData<List<Note>> getALlNotes(){
        return noteDatabase.noteDao().getAllNotes();
     }
 
-    public LiveData<Note> getNote(int id){
-        return noteDatabase.noteDao().getNote(id);
-    }
 }
